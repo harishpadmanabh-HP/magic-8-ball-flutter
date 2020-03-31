@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'dart:math';
 
@@ -25,12 +26,25 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Center(
-      child: FlatButton(
-        child: Image.asset('images/ball$ballNumber.png'),
-        onPressed: () {
-          //on click
-          changeBall();
-        },
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: <Widget>[
+          Padding(
+            padding: const EdgeInsets.all(18.0),
+            child: Text(
+              'Ask your Question and click the ball for decision.',
+              style: TextStyle(fontSize: 30.0, color: Colors.white),
+            ),
+          ),
+          FlatButton(
+            onPressed: () {
+              changeBall();
+            },
+            child: Image(
+              image: AssetImage('images/ball$ballNumber.png'),
+            ),
+          )
+        ],
       ),
     );
   }
@@ -38,6 +52,7 @@ class _HomePageState extends State<HomePage> {
   void changeBall() {
     setState(() {
       ballNumber = Random().nextInt(5) + 1;
+      print('ballnumber = $ballNumber');
     });
   }
 }
